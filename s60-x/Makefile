@@ -1,9 +1,6 @@
-.PHONY: all
-all: dependencies
-
-.PHONY: dependencies
-dependencies: dfu-programmer s60-x-firmware
-
+# --------------------------------------------------------------------------------
+# Define utility variables and functions:
+# --------------------------------------------------------------------------------
 # Currently only Debian-based Linux is supported:
 define mandate_platforms
 	@if [ -z "$$(grep 'Ubuntu\|Debian' /etc/lsb-release)" ]; then \
@@ -11,21 +8,34 @@ define mandate_platforms
 	fi
 endef
 
+define install_linux_package
+	@$(mandate_platforms)
+	@if [ ! -f $(2) ]; then \
+		echo ; \
+		echo Note: Installing $(1) which provides $(2); \
+		echo ; \
+		sudo apt-get install $(1); \
+	fi
+endef
+
+# --------------------------------------------------------------------------------
+# Define rules:
+# --------------------------------------------------------------------------------
+.PHONY: all
+all: build
+
+# Reference the build instructions at https://github.com/VinnyCordeiro/tmk_keyboard/tree/master/keyboard/s60-x
+.PHONY: build
+build: dfu-programmer s60-x-firmware
+	make -C tmk_keyboard/keyboard/s60-x KEYMAP=$(KEYMAP) 
+
 .PHONY: dfu-programmer
 dfu-programmer:
-	@$(mandate_platforms)
-	@if [ ! -f /usr/bin/dfu-programmer ]; then \
-		echo ; \
-		echo Note: Installing dfu-programmer; \
-		echo ; \
-		sudo apt-get install dfu-programmer; \
-	fi
-
+	$(call install_linux_package,dfu-programmer,/usr/bin/dfu-programmer)
 
 firmware_source_git_repo = https://github.com/VinnyCordeiro/tmk_keyboard.git
-
 .PHONY: s60-x-firmware
-s60-x-firmware:
+s60-x-firmware: avr-gcc
 	@$(mandate_platforms)
 	@if [ ! -d ./tmk_keyboard ]; then \
 		echo ; \
@@ -33,3 +43,12 @@ s60-x-firmware:
 		echo ; \
 		git clone $(firmware_source_git_repo); \
 	fi
+
+.PHONY: avr-gcc
+avr-gcc: libc6-dev
+	$(call install_linux_package,gcc-avr,/usr/bin/avr-gcc)
+
+.PHONY:
+libc6-dev:
+	$(call install_linux_package,libc6-dev,/usr/include/stdint.h)
+
