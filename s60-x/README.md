@@ -39,3 +39,5 @@ This build fails out and I have yet to debug exactly why:
     make: *** [build] Error 2
 
 I would think the include_next would find the one coming from libc6-dev but that does not seem to be the case
+
+I am persuing some help on the massdrop site at https://www.massdrop.com/buy/sentraq-60-diy-keyboard-kit/talk/402553
