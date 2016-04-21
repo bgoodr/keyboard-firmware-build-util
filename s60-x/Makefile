@@ -15,6 +15,12 @@ define install_linux_package
 		echo Note: Installing $(1) which provides $(2); \
 		echo ; \
 		sudo apt-get install $(1); \
+		@if [ ! -f $(2) ]; then \
+			echo ; \
+			echo ERROR: Installing $(1) did not provide $(2) as expected; \
+			echo ; \
+			exit 1; \
+		fi
 	fi
 endef
 
