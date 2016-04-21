@@ -15,7 +15,7 @@ define install_linux_package
 		echo Note: Installing $(1) which provides $(2); \
 		echo ; \
 		sudo apt-get install $(1); \
-		@if [ ! -f $(2) ]; then \
+		if [ ! -f $(2) ]; then \
 			echo ; \
 			echo ERROR: Installing $(1) did not provide $(2) as expected; \
 			echo ; \
@@ -48,7 +48,7 @@ s60-x-firmware: avr-gcc
 		echo Note: Downloading S60-X firmware from $(firmware_source_git_repo) ...; \
 		echo ; \
 		git clone $(firmware_source_git_repo); \
-		@if [ ! -d ./tmk_keyboard ]; then \
+		if [ ! -d ./tmk_keyboard ]; then \
 			echo ; \
 			echo ERROR: Installing $(firmware_source_git_repo) did not provide ./tmk_keyboard as expected; \
 			echo ; \
@@ -57,10 +57,26 @@ s60-x-firmware: avr-gcc
 	fi
 
 .PHONY: avr-gcc
-avr-gcc: libc6-dev
+avr-gcc: avr-libc 
 	$(call install_linux_package,gcc-avr,/usr/bin/avr-gcc)
 
+# The avr-libc provides the /usr/lib/avr/include/stdint.h which is
+# needed by avr-gcc whenever its stdint.h is included. Without this
+# package, we get this error:
+#
+#    In file included from keymap_common.h:20:0,
+#                     from keymap_standard.c:1:
+#    /usr/lib/gcc/avr/4.8.1/include/stdint.h:9:26: fatal error: stdint.h: No such file or directory
+#     # include_next <stdint.h>
+#                              ^
+#    compilation terminated.
+#
+# "apt-cache --no-all-versions show gcc-avr" indicates that avr-libc is suggested:
+#
+#    Suggests: task-c-devel, gcc-doc (>= 4:4.8), gcc (>= 4:4.8), avr-libc (>= 1:1.8.0-4)
+#
 .PHONY:
-libc6-dev:
-	$(call install_linux_package,libc6-dev,/usr/include/stdint.h)
+avr-libc:
+	$(call install_linux_package,avr-libc,/usr/lib/avr/include/stdint.h)
+
 
