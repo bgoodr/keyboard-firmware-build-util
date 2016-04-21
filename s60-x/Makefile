@@ -20,7 +20,7 @@ define install_linux_package
 			echo ERROR: Installing $(1) did not provide $(2) as expected; \
 			echo ; \
 			exit 1; \
-		fi
+		fi; \
 	fi
 endef
 
@@ -48,6 +48,12 @@ s60-x-firmware: avr-gcc
 		echo Note: Downloading S60-X firmware from $(firmware_source_git_repo) ...; \
 		echo ; \
 		git clone $(firmware_source_git_repo); \
+		@if [ ! -d ./tmk_keyboard ]; then \
+			echo ; \
+			echo ERROR: Installing $(firmware_source_git_repo) did not provide ./tmk_keyboard as expected; \
+			echo ; \
+			exit 1; \
+		fi; \
 	fi
 
 .PHONY: avr-gcc
