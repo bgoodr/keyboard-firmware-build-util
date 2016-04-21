@@ -21,3 +21,41 @@ Move to this directory then just run `make` like:
 
 This will install Ubuntu packages as needed. Currently limited to
 Ubuntu but might work on some other Debian-based Linux variants.
+
+Expect to see successful output of the form:
+
+    .
+    .
+    .
+    mkdir -p obj_S60-X_lufa/common
+    Compiling C: ../../tmk_core/common/mousekey.c
+    avr-gcc -c -mmcu=atmega32u4 -gdwarf-2 -DF_CPU=16000000UL -DINTERRUPT_CONTROL_ENDPOINT -DBOOTLOADER_SIZE=4096 -DF_USB=16000000UL -DARCH=ARCH_AVR8 -DUSB_DEVICE_ONLY -DUSE_FLASH_DESCRIPTORS -DUSE_STATIC_OPTIONS="(USB_DEVICE_OPT_FULLSPEED | USB_OPT_REG_ENABLED | USB_OPT_AUTO_PLL)" -DFIXED_CONTROL_ENDPOINT_SIZE=8  -DFIXED_NUM_CONFIGURATIONS=1 -DPROTOCOL_LUFA -DBOOTMAGIC_ENABLE -DMOUSEKEY_ENABLE -DMOUSE_ENABLE -DEXTRAKEY_ENABLE -DCONSOLE_ENABLE -DCOMMAND_ENABLE -DVERSION=0f2963a -Os -funsigned-char -funsigned-bitfields -ffunction-sections -fdata-sections -fno-inline-small-functions -fpack-struct -fshort-enums -fno-strict-aliasing -Wall -Wstrict-prototypes -Wa,-adhlns=obj_S60-X_lufa/common/mousekey.lst -I. -I../../tmk_core -I../../tmk_core/protocol/lufa -I../../tmk_core/protocol/lufa/LUFA-git -I../../tmk_core/common -std=gnu99 -include config.h -MMD -MP -MF .dep/obj_S60-X_lufa_common_mousekey.o.d  ../../tmk_core/common/mousekey.c -o obj_S60-X_lufa/common/mousekey.o 
+    
+    mkdir -p obj_S60-X_lufa/common
+    Compiling C: ../../tmk_core/common/command.c
+    avr-gcc -c -mmcu=atmega32u4 -gdwarf-2 -DF_CPU=16000000UL -DINTERRUPT_CONTROL_ENDPOINT -DBOOTLOADER_SIZE=4096 -DF_USB=16000000UL -DARCH=ARCH_AVR8 -DUSB_DEVICE_ONLY -DUSE_FLASH_DESCRIPTORS -DUSE_STATIC_OPTIONS="(USB_DEVICE_OPT_FULLSPEED | USB_OPT_REG_ENABLED | USB_OPT_AUTO_PLL)" -DFIXED_CONTROL_ENDPOINT_SIZE=8  -DFIXED_NUM_CONFIGURATIONS=1 -DPROTOCOL_LUFA -DBOOTMAGIC_ENABLE -DMOUSEKEY_ENABLE -DMOUSE_ENABLE -DEXTRAKEY_ENABLE -DCONSOLE_ENABLE -DCOMMAND_ENABLE -DVERSION=0f2963a -Os -funsigned-char -funsigned-bitfields -ffunction-sections -fdata-sections -fno-inline-small-functions -fpack-struct -fshort-enums -fno-strict-aliasing -Wall -Wstrict-prototypes -Wa,-adhlns=obj_S60-X_lufa/common/command.lst -I. -I../../tmk_core -I../../tmk_core/protocol/lufa -I../../tmk_core/protocol/lufa/LUFA-git -I../../tmk_core/common -std=gnu99 -include config.h -MMD -MP -MF .dep/obj_S60-X_lufa_common_command.o.d  ../../tmk_core/common/command.c -o obj_S60-X_lufa/common/command.o 
+    
+    Linking: S60-X_lufa.elf
+    avr-gcc -mmcu=atmega32u4 -gdwarf-2 -DF_CPU=16000000UL -DINTERRUPT_CONTROL_ENDPOINT -DBOOTLOADER_SIZE=4096 -DF_USB=16000000UL -DARCH=ARCH_AVR8 -DUSB_DEVICE_ONLY -DUSE_FLASH_DESCRIPTORS -DUSE_STATIC_OPTIONS="(USB_DEVICE_OPT_FULLSPEED | USB_OPT_REG_ENABLED | USB_OPT_AUTO_PLL)" -DFIXED_CONTROL_ENDPOINT_SIZE=8  -DFIXED_NUM_CONFIGURATIONS=1 -DPROTOCOL_LUFA -DBOOTMAGIC_ENABLE -DMOUSEKEY_ENABLE -DMOUSE_ENABLE -DEXTRAKEY_ENABLE -DCONSOLE_ENABLE -DCOMMAND_ENABLE -DVERSION=0f2963a -Os -funsigned-char -funsigned-bitfields -ffunction-sections -fdata-sections -fno-inline-small-functions -fpack-struct -fshort-enums -fno-strict-aliasing -Wall -Wstrict-prototypes -Wa,-adhlns=S60-X_lufa.elf -I. -I../../tmk_core -I../../tmk_core/protocol/lufa -I../../tmk_core/protocol/lufa/LUFA-git -I../../tmk_core/common -std=gnu99 -include config.h -MMD -MP -MF .dep/S60-X_lufa.elf.d  obj_S60-X_lufa/keymap_standard.o obj_S60-X_lufa/keymap_common.o obj_S60-X_lufa/matrix.o obj_S60-X_lufa/led.o obj_S60-X_lufa/protocol/lufa/lufa.o obj_S60-X_lufa/protocol/lufa/descriptor.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Class/Common/HIDParser.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/AVR8/Device_AVR8.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/AVR8/EndpointStream_AVR8.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/AVR8/Endpoint_AVR8.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/AVR8/Host_AVR8.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/AVR8/PipeStream_AVR8.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/AVR8/Pipe_AVR8.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/AVR8/USBController_AVR8.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/AVR8/USBInterrupt_AVR8.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/ConfigDescriptors.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/DeviceStandardReq.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/Events.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/HostStandardReq.o obj_S60-X_lufa/protocol/lufa/LUFA-git/LUFA/Drivers/USB/Core/USBTask.o obj_S60-X_lufa/common/host.o obj_S60-X_lufa/common/keyboard.o obj_S60-X_lufa/common/action.o obj_S60-X_lufa/common/action_tapping.o obj_S60-X_lufa/common/action_macro.o obj_S60-X_lufa/common/action_layer.o obj_S60-X_lufa/common/action_util.o obj_S60-X_lufa/common/print.o obj_S60-X_lufa/common/debug.o obj_S60-X_lufa/common/util.o obj_S60-X_lufa/common/avr/suspend.o obj_S60-X_lufa/common/avr/xprintf.o obj_S60-X_lufa/common/avr/timer.o obj_S60-X_lufa/common/avr/bootloader.o obj_S60-X_lufa/common/keymap.o obj_S60-X_lufa/common/bootmagic.o obj_S60-X_lufa/common/avr/eeconfig.o obj_S60-X_lufa/common/mousekey.o obj_S60-X_lufa/common/command.o --output S60-X_lufa.elf -Wl,-Map=S60-X_lufa.map,--cref -Wl,--gc-sections     -lm 
+    
+    Creating load file for Flash: S60-X_lufa.hex
+    avr-objcopy -O ihex -R .eeprom -R .fuse -R .lock -R .signature S60-X_lufa.elf S60-X_lufa.hex
+    
+    Creating load file for EEPROM: S60-X_lufa.eep
+    avr-objcopy -j .eeprom --set-section-flags=.eeprom="alloc,load" \
+    --change-section-lma .eeprom=0 --no-change-warnings -O ihex S60-X_lufa.elf S60-X_lufa.eep || exit 0
+    
+    Creating Extended Listing: S60-X_lufa.lss
+    avr-objdump -h -S -z S60-X_lufa.elf > S60-X_lufa.lss
+    
+    Creating Symbol Table: S60-X_lufa.sym
+    avr-nm -n S60-X_lufa.elf > S60-X_lufa.sym
+    
+    Size after:
+       text	   data	    bss	    dec	    hex	filename
+      20876	     50	    162	  21088	   5260	S60-X_lufa.elf
+    
+    -------- end --------
+    
+    make[1]: Leaving directory '/home/someuser/bgoodr/keyboard-firmware-build-util/s60-x/tmk_keyboard/keyboard/s60-x'
+
