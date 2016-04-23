@@ -37,12 +37,19 @@ endef
 all: build
 
 # Reference the build instructions at https://github.com/VinnyCordeiro/tmk_keyboard/tree/master/keyboard/s60-x
+# 
+# Use --assume-new=keymap_$(KEYMAP).c below in order to force the
+# specified KEYMAP file to be rebuilt each time. Without this, and you
+# compile different keymaps and try to load them, the .hex file does
+# not get regenerated.
+#
 .PHONY: build
 build: dfu-programmer download-firmware
-	make -C $(keyboard_subdir) KEYMAP=$(KEYMAP) 
+	./install_local_keymaps.sh $(keyboard_subdir)
+	make -C $(keyboard_subdir) --assume-new=keymap_$(KEYMAP).c KEYMAP=$(KEYMAP) 
 
 .PHONY: load
-load: install_udev_rules
+load: build install_udev_rules
 	make -C $(keyboard_subdir) KEYMAP=$(KEYMAP) dfu
 
 .PHONY: install_udev_rules
@@ -52,6 +59,7 @@ install_udev_rules:
 .PHONY: clean
 clean:
 	./install_udev_rules.sh $(keyboard_subdir) clean
+	./install_local_keymaps.sh $(keyboard_subdir) clean
 	make -C $(keyboard_subdir) KEYMAP=$(KEYMAP) clean
 
 .PHONY: dfu-programmer
