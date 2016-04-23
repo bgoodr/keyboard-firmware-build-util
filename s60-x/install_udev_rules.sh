@@ -8,10 +8,19 @@ then
   echo "ERROR: USAGE: $0 KEYBOARD_SUBDIR"
   exit 1
 fi
+do_clean="$2"
 
-# I am utterly confused by this. The VENDOR_ID and PRODUCT_ID listed
-# in the config.h do not match what I see when I click the reset
-# button while tailing /var/log/syslog like this:
+udev_rule_file1=/etc/udev/rules.d/50-atmel-dfu.rules
+udev_rule_file2=/etc/udev/rules.d/52-tmk-keyboard.rules
+
+if [ "$do_clean" = clean ]
+then
+  sudo rm -f $udev_rule_file1 $udev_rule_file2
+  exit $?
+fi
+
+# When you click the reset button,  the VENDOR_ID and PRODUCT_ID listed
+# in the config.h will not match what you see in  /var/log/syslog which will be:
 #
 #    someuser@wilddog:~/bgoodr/keyboard-firmware-build-util/s60-x$ tail -1lf /var/log/syslog
 #    Apr 20 22:22:07 wilddog kernel: [  600.913330] usb 1-2: SerialNumber: 1.0.0
@@ -23,36 +32,66 @@ fi
 #    Apr 20 22:22:33 wilddog kernel: [  627.859119] usb 1-2: Manufacturer: ATMEL
 #    Apr 20 22:22:33 wilddog kernel: [  627.859120] usb 1-2: SerialNumber: 1.0.0
 #    
-# So this means we should not use the vendor id and product id from the file as I thought, which means commenting out this:
-#
-#     VENDOR_ID=$(sed -n 's%^# *define *VENDOR_ID *0x\(.*\) *$%\1%gp' $keyboard_subdir/config.h)
-#     echo "VENDOR_ID==\"${VENDOR_ID}\""
-#     PRODUCT_ID=$(sed -n 's%^# *define *PRODUCT_ID *0x\(.*\) *$%\1%gp' $keyboard_subdir/config.h)
-#     echo "PRODUCT_ID==\"${PRODUCT_ID}\""
-#
-# and instead doing this which matches what we see in the "Linux udev
-# rules" section of https://github.com/tmk/tmk_keyboard/wiki/FAQ-Build
-# in the first place:
-#
-VENDOR_ID=03eb
-echo "VENDOR_ID==\"${VENDOR_ID}\""
-PRODUCT_ID=2ff4
-echo "PRODUCT_ID==\"${PRODUCT_ID}\""
-
-udev_rule_file=/etc/udev/rules.d/50-atmel-dfu.rules
-if [ ! -f $udev_rule_file -o "$UDEV_RULE_FILE_OVERWRITE_FORCE" = 1 ]
+if [ ! -f $udev_rule_file1 -o "$UDEV_RULE_FILE1_OVERWRITE_FORCE" = 1 ]
 then
   echo
-  echo "Executing sudo to update $udev_rule_file ..."
+  echo "Executing sudo to update $udev_rule_file1 ..."
   echo
-  sudo sh -c "cat > $udev_rule_file" <<EOF
+  sudo sh -c "cat > $udev_rule_file1" <<EOF
 # Atmel ATMega32U4
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="$VENDOR_ID", ATTRS{idProduct}=="$PRODUCT_ID", MODE:="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE:="0666"
+# Atmel USBKEY AT90USB1287
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ffb", MODE:="0666"
+# Atmel ATMega32U2
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", MODE:="0666"
 EOF
 
-  # Currently we are not certain the other rules listed in the "Linux
-  # udev rules" section of
-  # https://github.com/tmk/tmk_keyboard/wiki/FAQ-Build are needed so
-  # they were omited.
+ 
+fi
+
+
+if [ ! -f $udev_rule_file2 -o "$UDEV_RULE_FILE1_OVERWRITE_FORCE" = 1 ]
+then
+  echo
+  echo "Executing sudo to update $udev_rule_file2 ..."
+  echo
+
+  # The docs say to do this:  
+  #
+  #      sudo sh -c "cat > $udev_rule_file2" <<EOF
+  #    # tmk keyboard products     https://github.com/tmk/tmk_keyboard
+  #    SUBSYSTEMS=="usb", ATTRS{idVendor}=="feed", MODE:="0666"
+  #    EOF
+  #
+  # But for the s60-x keyboard, I see this as lsusb output:
+  #
+  #   $ lsusb
+  #   Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+  #   Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+  #   Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+  #   Bus 001 Device 003: ID 051d:0002 American Power Conversion Uninterruptible Power Supply
+  #   Bus 001 Device 009: ID f0da:0666  
+  #   Bus 001 Device 004: ID 046d:c52f Logitech, Inc. Unifying Receiver
+  #   Bus 001 Device 002: ID 046d:c318 Logitech, Inc. Illuminated Keyboard
+  #   Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+  #
+  # Notice the blank line after f0da:0666. I reason that the values
+  # are not correct and should instead match what is in the config.h
+  # file. Therefore, try feeding the same value in config.h over into
+  # the udev rule file:
+
+  VENDOR_ID=$(sed -n 's%^# *define *VENDOR_ID *0x\(.*\) *$%\1%gp' $keyboard_subdir/config.h)
+  echo "VENDOR_ID==\"${VENDOR_ID}\""
+  PRODUCT_ID=$(sed -n 's%^# *define *PRODUCT_ID *0x\(.*\) *$%\1%gp' $keyboard_subdir/config.h)
+  echo "PRODUCT_ID==\"${PRODUCT_ID}\""
+  sudo sh -c "cat > $udev_rule_file2" <<EOF
+# tmk keyboard products     https://github.com/tmk/tmk_keyboard
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="$VENDOR_ID", MODE:="$PRODUCT_ID"
+EOF
+#   sudo sh -c "cat > $udev_rule_file2" <<EOF
+# # tmk keyboard products     https://github.com/tmk/tmk_keyboard
+# SUBSYSTEMS=="usb", ATTRS{idVendor}=="feed", MODE:="0666"
+# EOF
+  
   
 fi

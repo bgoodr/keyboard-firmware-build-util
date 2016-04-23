@@ -1,4 +1,10 @@
 # --------------------------------------------------------------------------------
+# Define customizable variables:
+# --------------------------------------------------------------------------------
+firmware_source_git_repo = https://github.com/VinnyCordeiro/tmk_keyboard.git
+keyboard_subdir = tmk_keyboard/keyboard/s60-x
+
+# --------------------------------------------------------------------------------
 # Define utility variables and functions:
 # --------------------------------------------------------------------------------
 # Currently only Debian-based Linux is supported:
@@ -32,20 +38,32 @@ all: build
 
 # Reference the build instructions at https://github.com/VinnyCordeiro/tmk_keyboard/tree/master/keyboard/s60-x
 .PHONY: build
-build: dfu-programmer s60-x-firmware
-	make -C tmk_keyboard/keyboard/s60-x KEYMAP=$(KEYMAP) 
+build: dfu-programmer download-firmware
+	make -C $(keyboard_subdir) KEYMAP=$(KEYMAP) 
+
+.PHONY: load
+load: install_udev_rules
+	make -C $(keyboard_subdir) KEYMAP=$(KEYMAP) dfu
+
+.PHONY: install_udev_rules
+install_udev_rules:
+	./install_udev_rules.sh $(keyboard_subdir)
+
+.PHONY: clean
+clean:
+	./install_udev_rules.sh $(keyboard_subdir) clean
+	make -C $(keyboard_subdir) KEYMAP=$(KEYMAP) clean
 
 .PHONY: dfu-programmer
 dfu-programmer:
 	$(call install_linux_package,dfu-programmer,/usr/bin/dfu-programmer)
 
-firmware_source_git_repo = https://github.com/VinnyCordeiro/tmk_keyboard.git
-.PHONY: s60-x-firmware
-s60-x-firmware: avr-gcc
+.PHONY: download-firmware
+download-firmware: avr-gcc
 	@$(mandate_platforms)
 	@if [ ! -d ./tmk_keyboard ]; then \
 		echo ; \
-		echo Note: Downloading S60-X firmware from $(firmware_source_git_repo) ...; \
+		echo Note: Downloading firmware from $(firmware_source_git_repo) ...; \
 		echo ; \
 		git clone $(firmware_source_git_repo); \
 		if [ ! -d ./tmk_keyboard ]; then \
