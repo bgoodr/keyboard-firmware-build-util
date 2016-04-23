@@ -2,7 +2,7 @@
 # Define customizable variables:
 # --------------------------------------------------------------------------------
 firmware_source_git_repo = https://github.com/VinnyCordeiro/tmk_keyboard.git
-keyboard_subdir = tmk_keyboard/keyboard/s60-x
+firmware_subdir = tmk_keyboard/keyboard/s60-x
 
 # --------------------------------------------------------------------------------
 # Define utility variables and functions:
@@ -45,22 +45,22 @@ all: build
 #
 .PHONY: build
 build: dfu-programmer download-firmware
-	./install_local_keymaps.sh $(keyboard_subdir)
-	make -C $(keyboard_subdir) --assume-new=keymap_$(KEYMAP).c KEYMAP=$(KEYMAP) 
+	./install_local_keymaps.sh $(firmware_subdir)
+	make -C $(firmware_subdir) --assume-new=keymap_$(KEYMAP).c KEYMAP=$(KEYMAP) 
 
 .PHONY: load
 load: build install_udev_rules
-	make -C $(keyboard_subdir) KEYMAP=$(KEYMAP) dfu
+	make -C $(firmware_subdir) KEYMAP=$(KEYMAP) dfu
 
 .PHONY: install_udev_rules
 install_udev_rules:
-	./install_udev_rules.sh $(keyboard_subdir)
+	./install_udev_rules.sh $(firmware_subdir)
 
 .PHONY: clean
 clean:
-	./install_udev_rules.sh $(keyboard_subdir) clean
-	./install_local_keymaps.sh $(keyboard_subdir) clean
-	make -C $(keyboard_subdir) KEYMAP=$(KEYMAP) clean
+	./install_udev_rules.sh $(firmware_subdir) clean
+	./install_local_keymaps.sh $(firmware_subdir) clean
+	make -C $(firmware_subdir) KEYMAP=$(KEYMAP) clean
 
 .PHONY: dfu-programmer
 dfu-programmer:

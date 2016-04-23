@@ -2,10 +2,10 @@
 
 # Reference "Linux udev rules" section of https://github.com/tmk/tmk_keyboard/wiki/FAQ-Build
 
-keyboard_subdir="$1"
-if [ -z "$keyboard_subdir" ]
+firmware_subdir="$1"
+if [ -z "$firmware_subdir" ]
 then
-  echo "ERROR: USAGE: $0 KEYBOARD_SUBDIR"
+  echo "ERROR: USAGE: $0 firmware_subdir"
   exit 1
 fi
 do_clean="$2"
@@ -80,9 +80,9 @@ then
   # file. Therefore, try feeding the same value in config.h over into
   # the udev rule file:
 
-  VENDOR_ID=$(sed -n 's%^# *define *VENDOR_ID *0x\(.*\) *$%\1%gp' $keyboard_subdir/config.h)
+  VENDOR_ID=$(sed -n 's%^# *define *VENDOR_ID *0x\(.*\) *$%\1%gp' $firmware_subdir/config.h)
   echo "VENDOR_ID==\"${VENDOR_ID}\""
-  PRODUCT_ID=$(sed -n 's%^# *define *PRODUCT_ID *0x\(.*\) *$%\1%gp' $keyboard_subdir/config.h)
+  PRODUCT_ID=$(sed -n 's%^# *define *PRODUCT_ID *0x\(.*\) *$%\1%gp' $firmware_subdir/config.h)
   echo "PRODUCT_ID==\"${PRODUCT_ID}\""
   sudo sh -c "cat > $udev_rule_file2" <<EOF
 # tmk keyboard products     https://github.com/tmk/tmk_keyboard

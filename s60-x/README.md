@@ -92,5 +92,5 @@ dfu-programmer.
 
 Does the samething as the previous example, but builds the
 keymap_standard.c file that is maintained in the firmware directory
-(see keyboard_subdir variable in the Makefile).
+(see firmware_subdir variable in the Makefile).
 
