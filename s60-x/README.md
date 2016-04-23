@@ -72,16 +72,16 @@ them to that clone directory. See Examples below.
 
 You can store your keymap_*.c files into the current working directory
 and they will get picked up by the build. An example is checked in
-here, keymap_stdcapslockswap.c, that swaps the caps lock and control
+here, keymap_standard_capslockctrlswap.c, that swaps the caps lock and control
 keys, but is otherwise identical to
 tmk_keyboard/keyboard/s60-x/keymap_standard.c.  
 
-    sleep 5; make KEYMAP=stdcapslockswap build load
+    sleep 5; make KEYMAP=standard_capslockctrlswap build load
 
 The above sleeps for 5 seconds, giving you enough time to press the
 reset button (puts the microcontroller into DFU bootloader mode, ready
 to receive the firmware from the dfu-programmer), and builds the
-keymap_stdcapslockswap.c file that happens to be loaded in the current
+keymap_standard_capslockctrlswap.c file that happens to be loaded in the current
 working directory, and loads it into the keyboard.
 
 I have found on Ubuntu that I sometimes have to unplug and plug back
