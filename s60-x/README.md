@@ -16,6 +16,21 @@ firmware.
 You can use a different tmk firmware by changing the variables at the
 top of the Makefile.
 
+## Allow the user to store their own local keymaps
+
+The user of this directory can store their own set of keymap files
+without having to clone the entire tmk firmware directory just to add
+them to that clone directory. The idea is that the user forks a copy
+of this repository, and adds their own (no need to push it back to
+this repo of course).  See Examples below.
+
+## Local Keymaps
+
+The following are local keymaps defined by this repository:
+
+* [keymap_standard_capslockctrlswap.c](keymap_standard_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_standard.c but with capslock and control key swapped.
+* [keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_spacefn.c but with capslock and control key swapped.
+
 ## Build
 
 Move to this directory then just run `make` like:
@@ -61,12 +76,6 @@ Expect to see successful output of the form:
     -------- end --------
     
     make[1]: Leaving directory '/home/someuser/bgoodr/keyboard-firmware-build-util/s60-x/tmk_keyboard/keyboard/s60-x'
-
-## Allow the user to store their own local keymaps
-
-The user of this directory can store their own set of keymap files
-without having to clone the entire tmk firmware directory just to add
-them to that clone directory. See Examples below.
 
 ## Examples
 
