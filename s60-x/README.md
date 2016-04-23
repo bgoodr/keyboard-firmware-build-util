@@ -1,5 +1,4 @@
-s60-x
-=====
+# s60-x
 
 Parent: [keyboard-firmware-build-util](../../README.md)
 
@@ -10,8 +9,9 @@ Description of the keyboard from MassDrop: https://www.massdrop.com/buy/sentraq-
 Firmware for the S60-X keyboard: https://github.com/VinnyCordeiro/tmk_keyboard/blob/master/keyboard/s60-x/README.md
 
 The instructions there state that you have to download install tooling
-to upload to the firmware. This downloads and installs tooling that is
-required including the firmware.
+to upload to the firmware. This downloads and installs required system
+packages such as dfu-programmer, and also checks out a copy of the
+firmware.
 
 You can use a different tmk firmware by changing the variables at the
 top of the Makefile.
@@ -84,12 +84,13 @@ to receive the firmware from the dfu-programmer), and builds the
 keymap_stdcapslockswap.c file that happens to be loaded in the current
 working directory, and loads it into the keyboard.
 
-I have found on Ubuntu that I sometimes have to unplug and replugin
-the USB cable, as otherwise you will get a "not present" error from
+I have found on Ubuntu that I sometimes have to unplug and plug back
+in the USB cable, as otherwise you will get a "not present" error from
 dfu-programmer.
 
     sleep 5; make KEYMAP=standard build load
 
 Does the samething as the previous example, but builds the
-keymap_standard.c file that is maintained in the firmware directory (see)
+keymap_standard.c file that is maintained in the firmware directory
+(see keyboard_subdir variable in the Makefile).
 
