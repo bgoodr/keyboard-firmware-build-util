@@ -13,6 +13,9 @@ The instructions there state that you have to download install tooling
 to upload to the firmware. This downloads and installs tooling that is
 required including the firmware.
 
+You can use a different tmk firmware by changing the variables at the
+top of the Makefile.
+
 ## Build
 
 Move to this directory then just run `make` like:
@@ -58,4 +61,35 @@ Expect to see successful output of the form:
     -------- end --------
     
     make[1]: Leaving directory '/home/someuser/bgoodr/keyboard-firmware-build-util/s60-x/tmk_keyboard/keyboard/s60-x'
+
+## Allow the user to store their own local keymaps
+
+The user of this directory can store their own set of keymap files
+without having to clone the entire tmk firmware directory just to add
+them to that clone directory. See Examples below.
+
+## Examples
+
+You can store your keymap_*.c files into the current working directory
+and they will get picked up by the build. An example is checked in
+here, keymap_stdcapslockswap.c, that swaps the caps lock and control
+keys, but is otherwise identical to
+tmk_keyboard/keyboard/s60-x/keymap_standard.c.  
+
+    sleep 5; make KEYMAP=stdcapslockswap build load
+
+The above sleeps for 5 seconds, giving you enough time to press the
+reset button (puts the microcontroller into DFU bootloader mode, ready
+to receive the firmware from the dfu-programmer), and builds the
+keymap_stdcapslockswap.c file that happens to be loaded in the current
+working directory, and loads it into the keyboard.
+
+I have found on Ubuntu that I sometimes have to unplug and replugin
+the USB cable, as otherwise you will get a "not present" error from
+dfu-programmer.
+
+    sleep 5; make KEYMAP=standard build load
+
+Does the samething as the previous example, but builds the
+keymap_standard.c file that is maintained in the firmware directory (see)
 
