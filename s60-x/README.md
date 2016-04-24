@@ -31,6 +31,20 @@ The following are local keymaps defined by this repository:
 * [keymap_standard_capslockctrlswap.c](keymap_standard_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_standard.c but with capslock and control key swapped.
 * [keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_spacefn.c but with capslock and control key swapped.
 
+## Printing Side labels
+
+For SpaceFN
+([keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c)),
+it is nice to have side labels on the keys (front side).
+
+Open the avery_6240_grid_tiled_keycap_side_labels.svg file under
+Inkscape and follow the directions there. An attempt was made to use a
+fill color close to the color of my keys. Alter as you see fit.
+
+These align to a grid for Avery 6240 labels.
+
+See http://i.imgur.com/0Gdwp3J.jpg for a photo of the result.
+
 ## Build
 
 Move to this directory then just run `make` like:
