@@ -49,10 +49,11 @@ See http://i.imgur.com/0Gdwp3J.jpg for a photo of the result.
 
 Move to this directory then just run `make` like:
 
-    $ make
+    $ make KEYMAP=your_chosen_key_map_here build load
 
-This will install Ubuntu packages as needed. Currently limited to
-Ubuntu but might work on some other Debian-based Linux variants.
+This will install Ubuntu packages as needed, and load the firmware
+(see examples below). This currently limited to Ubuntu, but might work
+on some other Debian-based Linux variants.
 
 Expect to see successful output of the form:
 
