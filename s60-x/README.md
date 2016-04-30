@@ -43,7 +43,12 @@ fill color close to the color of my keys. Alter as you see fit.
 
 These align to a grid for Avery 6240 labels.
 
-See http://i.imgur.com/0Gdwp3J.jpg for a photo of the result.
+See http://i.imgur.com/0Gdwp3J.jpg for a photo of the first keyboard I
+did this on. That shows the space bar not reversed.
+
+Later on, when I built my second Sentraq keyboard, I found my thumb
+hit the edge of the spacebar, so I reversed it. Find a picture of the
+second keyboard: http://i.imgur.com/i1PCgsn.jpg
 
 ## Build
 
