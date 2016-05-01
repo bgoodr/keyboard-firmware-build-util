@@ -1,4 +1,4 @@
-#include "keymap_common.h"
+#include "keymap_common.h" 
 
 /*
  * SpaceFN
@@ -11,7 +11,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
 │ TAB │  Q  │  W  │  E  │  R  │  T  │  Y  │  U  │  I  │  O  │  P  │  [  │  ]  │  \  │█████│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-│LCTRL│  A  │  S  │  D  │  F  │  G  │  H  │  J  │  K  │  L  │ FN2 │  '  │▒▒▒▒▒│ENTER│█████│
+│LCTRL│  A  │  S  │  D  │  F  │  G  │  H  │  J  │  K  │  L  │  ;  │  '  │▒▒▒▒▒│ENTER│█████│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
 │LSHFT│▒▒▒▒▒│  Z  │  X  │  C  │  V  │  B  │  N  │  M  │  ,  │  .  │  /  │▒▒▒▒▒│RSHFT│▒▒▒▒▒│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
@@ -21,7 +21,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(
          ESC,    1,    2,   3,   4,   5,   6,   7,   8,    9,    0, MINS,  EQL,   NO, BSPC, \
          TAB,    Q,    W,   E,   R,   T,   Y,   U,   I,    O,    P, LBRC, RBRC, BSLS,       \
-        LCTL,    A,    S,   D,   F,   G,   H,   J,   K,    L,  FN2, QUOT,   NO,  ENT,       \
+        LCTL,  FN2,    S,   D,   F,   G,   H,   J,   K,    L, SCLN, QUOT,   NO,  ENT,       \
         LSFT,   NO,    Z,   X,   C,   V,   B,   N,   M, COMM,  DOT, SLSH,   NO, RSFT,   NO, \
         CAPS, LGUI, LALT,                FN0,                 RALT, RGUI,  APP, RCTL),
 
@@ -70,7 +70,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
-    [0] = ACTION_LAYER_TAP_KEY(1, KC_SPACE),    // holding down FN0 switches to mouse keys layer, tapping FN2 produces semicolon
+    [0] = ACTION_LAYER_TAP_KEY(1, KC_SPACE),    // Holding down FN0 switches to mouse keys layer, tapping FN0 produces a "Space"
     [1] = ACTION_MODS_KEY(MOD_LSFT, KC_GRV),    // FN1 acts as if shift-grv occurred, yielding a tilde.
-    [2] = ACTION_LAYER_TAP_KEY(2, KC_SCLN),     // holding down FN2 switches to mouse keys layer, tapping FN2 produces semicolon
+    [2] = ACTION_LAYER_TAP_KEY(2, KC_A),        // Holding down FN2 switches to mouse keys layer, tapping FN2 produces an "A"
 }; 
