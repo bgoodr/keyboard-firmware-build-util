@@ -61,9 +61,14 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(
   TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
    TAB, TRNS, TRNS, TRNS, TRNS, TRNS, WH_L, WH_D, WH_U, WH_R, TRNS, TRNS, TRNS, TRNS,       \
-  LCTL, TRNS, ACL0, ACL1, ACL2, TRNS, MS_L, MS_D, MS_U, MS_R, BTN3, TRNS, TRNS,  ENT,       \
-  LSFT, TRNS, TRNS, TRNS, TRNS, TRNS, BTN3, BTN2, BTN1, BTN4, BTN5, TRNS, TRNS, RSFT, TRNS, \
+  LCTL, TRNS, ACL0, ACL1, ACL2, TRNS, MS_L, MS_D, MS_U, MS_R, BTN2, TRNS, TRNS,  ENT,       \
+  LSFT, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, BTN3, BTN1, BTN4, BTN5, TRNS, TRNS, RSFT, TRNS, \
   LCTL, LGUI, LALT,                   BTN1,                   TRNS, TRNS, TRNS, RCTL),
+ /*
+  * Hack: For some reason not yet understood, on my machine, BTN3 shows up as
+  * Button 2 in xev, and BTN2 shows up as Button 3 in xev. Swap them around in
+  * the keymap above.
+  */
 };
 
 /*
