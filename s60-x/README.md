@@ -123,3 +123,8 @@ Does the samething as the previous example, but builds the
 keymap_standard.c file that is maintained in the firmware directory
 (see firmware_subdir variable in the Makefile).
 
+## Helpful Resources
+
+ 1. Introduction to the TMK Firmware: http://blog.roastpotatoes.co/2015/03/30/introduction-to-the-tmk-firmware/
+ 1. Definitions of certain macros: ACTION_LAYER_MOMENTARY, ACTION_LAYER_TOGGLE, and ACTION_LAYER_TAP_KEY: https://deskthority.net/workshop-f7/how-to-build-your-very-own-keyboard-firmware-t7177.html#p141386
+
