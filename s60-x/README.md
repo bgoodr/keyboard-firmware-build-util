@@ -30,6 +30,7 @@ The following are local keymaps defined by this repository:
 
 * [keymap_standard_capslockctrlswap.c](keymap_standard_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_standard.c but with capslock and control key swapped.
 * [keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_spacefn.c but with capslock and control key swapped.
+* [keymap_spacefn_capslockctrlswap_mousekeys.c](keymap_spacefn_capslockctrlswap_mousekeys.c): Same as keymap_spacefn_capslockctrlswap.c but with a mouse keys layer added.
 
 ## Printing Side labels
 
