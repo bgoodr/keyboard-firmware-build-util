@@ -15,7 +15,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
 │LSHFT│▒▒▒▒▒│  Z  │  X  │  C  │  V  │  B  │  N  │  M  │  ,  │  .  │  /  │▒▒▒▒▒│RSHFT│▒▒▒▒▒│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-│CAPSL│L_GUI│L_ALT│█████│█████│█████Spc/Fn0█████│█████│█████│R_ALT│R_GUI│ APP │RCTRL│█████│
+│CAPSL│L_GUI│L_ALT│█████│█████│█████Spc/Fn0█████│█████│█████│R_ALT│ FN3 │ APP │RCTRL│█████│
 └─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
      */
     KEYMAP(
@@ -23,7 +23,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    TAB,    Q,    W,    E,    R,    T,    Y,    U,    I,    O,    P, LBRC, RBRC, BSLS,       \
   LCTL,  FN2,    S,    D,    F,    G,    H,    J,    K,    L, SCLN, QUOT,   NO,  ENT,       \
   LSFT,   NO,    Z,    X,    C,    V,    B,    N,    M, COMM,  DOT, SLSH,   NO, RSFT,   NO, \
-  CAPS, LGUI, LALT,                    FN0,                   RALT, RGUI,  APP, RCTL),
+  CAPS, LGUI, LALT,                    FN0,                   RALT,  FN3,  APP, RCTL),
 
     /* Overlay 1: SpaceFN
 ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
@@ -44,6 +44,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, LEFT, DOWN, RGHT, TRNS, TRNS, TRNS, TRNS,       \
 	TRNS, TRNS, TRNS, TRNS, TRNS,  SPC, PGDN,  GRV,  FN1, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
 	TRNS, TRNS, TRNS,                   TRNS,                   TRNS, TRNS, TRNS, TRNS),
+
     /* Overlay 2: Mouse mode (Semicolon/App)
 ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
 │Grave│ F1  │ F2  │ F3  │ F4  │ F5  │ F6  │ F7  │ F8  │ F9  │ F10 │ F11 │ F12 │▒▒▒▒▒│BkSpc│
@@ -69,13 +70,59 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * Button 2 in xev, and BTN2 shows up as Button 3 in xev. Swap them around in
   * the keymap above.
   */
+
+    /* Keymap 3: Qwerty with swapped caps and control keys Layer
+       This is mainly to allow a layout that treats "a" and spacebar like a regular keyboard, for gaming.
+┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+│ ESC │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │  9  │  0  │  -  │  =  │▒▒▒▒▒│BKSPC│
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ TAB │  Q  │  W  │  E  │  R  │  T  │  Y  │  U  │  I  │  O  │  P  │  [  │  ]  │  \  │█████│
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│LCTRL│  A  │  S  │  D  │  F  │  G  │  H  │  J  │  K  │  L  │  ;  │  '  │▒▒▒▒▒│ENTER│█████│
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│LSHFT│▒▒▒▒▒│  Z  │  X  │  C  │  V  │  B  │  N  │  M  │  ,  │  .  │  /  │▒▒▒▒▒│RSHFT│▒▒▒▒▒│
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│CAPSL│L_GUI│L_ALT│█████│█████│█████│ SPC │█████│█████│█████│R_ALT│ FN3 │ APP │RCTRL│█████│
+└─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+*/
+    KEYMAP(
+   ESC,    1,    2,    3,    4,    5,    6,    7,    8,    9,    0, MINS,  EQL,   NO, BSPC, \
+   TAB,    Q,    W,    E,    R,    T,    Y,    U,    I,    O,    P, LBRC, RBRC, BSLS,       \
+  LCTL,    A,    S,    D,    F,    G,    H,    J,    K,    L, SCLN, QUOT,   NO, ENT ,       \
+  LSFT,   NO,    Z,    X,    C,    V,    B,    N,    M, COMM,  DOT, SLSH,   NO, RSFT,   NO, \
+  CAPS, LGUI, LALT,                    SPC,                   RALT,  FN3,  APP, RCTL),
+
+    /* Overlay 4: Layout selector
+┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+│     │     │     │     │     │     │     │     │     │     │     │     │     │▒▒▒▒▒│     │
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│     │ lq  │     │     │     │     │     │     │     │     │     │     │     │     │█████│
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│     │     │     │ ld  │     │     │     │     │     │     │     │     │▒▒▒▒▒│     │█████│
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│     │▒▒▒▒▒│     │     │     │     │     │     │     │     │     │     │▒▒▒▒▒│     │▒▒▒▒▒│
+├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│     │     │     │█████│█████│█████│     │█████│█████│█████│     │ FN3 │     │     │█████│
+└─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
+     * Lq: set Qwerty layout
+     * Ls: set SpaceFN layout
+     */
+    KEYMAP(
+  TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+  TRNS,  FN4, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       \
+	TRNS, TRNS, TRNS,  FN5, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,       \
+	TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+	TRNS, TRNS, TRNS,                   TRNS,                   TRNS, TRNS, TRNS, TRNS),
 };
 
 /*
  * Fn action definition
  */
 const uint16_t PROGMEM fn_actions[] = {
-    [0] = ACTION_LAYER_TAP_KEY(1, KC_SPACE),    // Holding down FN0 switches to mouse keys layer, tapping FN0 produces a "Space"
+    [0] = ACTION_LAYER_TAP_KEY(1, KC_SPACE),    // Holding down FN0 switches to spacefn layer, tapping FN0 produces a "Space"
     [1] = ACTION_MODS_KEY(MOD_LSFT, KC_GRV),    // FN1 acts as if shift-grv occurred, yielding a tilde.
     [2] = ACTION_LAYER_TAP_KEY(2, KC_A),        // Holding down FN2 switches to mouse keys layer, tapping FN2 produces an "A"
+    [3] = ACTION_LAYER_MOMENTARY(4),            // Holding down FN3 switches to layout selector layer
+    [4] = ACTION_DEFAULT_LAYER_SET(3),          // Switch to qwerty layout
+    [5] = ACTION_DEFAULT_LAYER_SET(0),          // Switch to default layout
 }; 
