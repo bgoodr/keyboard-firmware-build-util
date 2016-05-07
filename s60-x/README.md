@@ -31,6 +31,7 @@ The following are local keymaps defined by this repository:
 * [keymap_standard_capslockctrlswap.c](keymap_standard_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_standard.c but with capslock and control key swapped.
 * [keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_spacefn.c but with capslock and control key swapped.
 * [keymap_spacefn_capslockctrlswap_mousekeys.c](keymap_spacefn_capslockctrlswap_mousekeys.c): Same as keymap_spacefn_capslockctrlswap.c but with a mouse keys layer added.
+* [keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys.c]: Same as keymap_spacefn_capslockctrlswap_mousekeys.c, but with SpaceFN layer changed to have H, J, K, L be the left, down, up, and right arrow keys which is in alignment with the mouse keys mouse left, down, up, and right, respectively. I did this because I found it difficult, in heavy usage, to keep them separate in my head when using mouse keys and SpaceFN.
 
 ## Printing Side labels
 
