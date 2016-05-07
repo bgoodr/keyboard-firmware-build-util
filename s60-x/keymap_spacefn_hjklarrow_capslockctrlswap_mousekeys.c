@@ -29,20 +29,20 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
 │  `  │ F1  │ F2  │ F3  │ F4  │ F5  │ F6  │ F7  │ F8  │ F9  │ F10 │ F11 │ F12 │▒▒▒▒▒│ Del │
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-│     │     │     │ Esc │     │     │     │Home │ Up  │ End │Pscr │Slck │Pause│ Ins │█████│
+│     │     │     │ Esc │     │     │     │Home │     │ End │Pscr │Slck │Pause│ Ins │█████│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-│     │     │     │     │     │     │PgUp │Left │Down │Right│     │     │▒▒▒▒▒│     │█████│
+│     │     │     │PgUp │PgDwn│     │Left │Down │ Up  │Right│     │     │▒▒▒▒▒│     │█████│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-│     │▒▒▒▒▒│     │     │     │Space│PgDwn│  `  │  ~  │     │     │     │▒▒▒▒▒│     │▒▒▒▒▒│
+│     │▒▒▒▒▒│     │     │     │Space│     │  `  │  ~  │     │     │     │▒▒▒▒▒│     │▒▒▒▒▒│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
 │     │     │     │█████│█████│█████│     │█████│█████│█████│     │     │     │     │█████│
 └─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
      */
     KEYMAP(
 	 GRV,   F1,   F2,   F3,   F4,   F5,   F6,   F7,   F8,   F9,  F10,  F11,  F12, TRNS,  DEL, \
-  TRNS, TRNS, TRNS,  ESC, TRNS, TRNS, TRNS, HOME,   UP,  END, PSCR, SLCK, PAUS,  INS,       \
-	TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, LEFT, DOWN, RGHT, TRNS, TRNS, TRNS, TRNS,       \
-	TRNS, TRNS, TRNS, TRNS, TRNS,  SPC, PGDN,  GRV,  FN1, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+  TRNS, TRNS, TRNS,  ESC, TRNS, TRNS, TRNS, HOME, TRNS,  END, PSCR, SLCK, PAUS,  INS,       \
+	TRNS, TRNS, TRNS, PGUP, PGDN, TRNS, LEFT, DOWN,   UP, RGHT, TRNS, TRNS, TRNS, TRNS,       \
+	TRNS, TRNS, TRNS, TRNS, TRNS,  SPC, TRNS,  GRV,  FN1, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
 	TRNS, TRNS, TRNS,                   TRNS,                   TRNS, TRNS, TRNS, TRNS),
 
     /* Overlay 2: Mouse mode (Semicolon/App)
