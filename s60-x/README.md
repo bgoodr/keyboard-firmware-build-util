@@ -24,34 +24,6 @@ them to that clone directory. The idea is that the user forks a copy
 of this repository, and adds their own (no need to push it back to
 this repo of course).  See Examples below.
 
-## Local Keymaps
-
-The following are local keymaps defined by this repository:
-
-* [keymap_standard_capslockctrlswap.c](keymap_standard_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_standard.c but with capslock and control key swapped.
-* [keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_spacefn.c but with capslock and control key swapped.
-* [keymap_spacefn_capslockctrlswap_mousekeys.c](keymap_spacefn_capslockctrlswap_mousekeys.c): Same as keymap_spacefn_capslockctrlswap.c but with a mouse keys layer added.
-* [keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys.c]: Same as keymap_spacefn_capslockctrlswap_mousekeys.c, but with SpaceFN layer changed to have H, J, K, L be the left, down, up, and right arrow keys which is in alignment with the mouse keys mouse left, down, up, and right, respectively. I did this because I found it difficult, in heavy usage, to keep them separate in my head when using mouse keys and SpaceFN. PgDwn and PgUp also moved to the left side under D and F, respectively, because the left hand is mostly unused when the space bar is held down when the SpaceFN layer is active. A cheatsheet Inkscape file at keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys.svg is useful to print and have at hand for training your fingers.
-
-## Printing Side labels
-
-For SpaceFN
-([keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c)),
-it is nice to have side labels on the keys (front side).
-
-Open the avery_6240_grid_tiled_keycap_side_labels.svg file under
-Inkscape and follow the directions there. An attempt was made to use a
-fill color close to the color of my keys. Alter as you see fit.
-
-These align to a grid for Avery 6240 labels.
-
-See http://i.imgur.com/0Gdwp3J.jpg for a photo of the first keyboard I
-did this on. That shows the space bar not reversed.
-
-Later on, when I built my second Sentraq keyboard, I found my thumb
-hit the edge of the spacebar, so I reversed it. Find a picture of the
-second keyboard: http://i.imgur.com/i1PCgsn.jpg
-
 ## Build
 
 Move to this directory then just run `make` like:
@@ -102,6 +74,15 @@ Expect to see successful output of the form:
     
     make[1]: Leaving directory '/home/someuser/bgoodr/keyboard-firmware-build-util/s60-x/tmk_keyboard/keyboard/s60-x'
 
+## Local Keymaps
+
+The following are local keymaps defined by this repository:
+
+* [keymap_standard_capslockctrlswap.c](keymap_standard_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_standard.c but with capslock and control key swapped.
+* [keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_spacefn.c but with capslock and control key swapped.
+* [keymap_spacefn_capslockctrlswap_mousekeys.c](keymap_spacefn_capslockctrlswap_mousekeys.c): Same as keymap_spacefn_capslockctrlswap.c but with a mouse keys layer added.
+* [keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys.c]: Same as keymap_spacefn_capslockctrlswap_mousekeys.c, but with SpaceFN layer changed to have H, J, K, L be the left, down, up, and right arrow keys which is in alignment with the mouse keys mouse left, down, up, and right, respectively. I did this because I found it difficult, in heavy usage, to keep them separate in my head when using mouse keys and SpaceFN. PgDwn and PgUp also moved to the left side under D and F, respectively, because the left hand is mostly unused when the space bar is held down when the SpaceFN layer is active. A cheatsheet Inkscape file at keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys.svg is useful to print and have at hand for training your fingers.
+
 ## Examples
 
 You can store your keymap_*.c files into the current working directory
@@ -132,4 +113,23 @@ keymap_standard.c file that is maintained in the firmware directory
 
  1. Introduction to the TMK Firmware: http://blog.roastpotatoes.co/2015/03/30/introduction-to-the-tmk-firmware/
  1. Definitions of certain macros: ACTION_LAYER_MOMENTARY, ACTION_LAYER_TOGGLE, and ACTION_LAYER_TAP_KEY: https://deskthority.net/workshop-f7/how-to-build-your-very-own-keyboard-firmware-t7177.html#p141386
+
+## Printing Side labels
+
+For SpaceFN
+([keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c)),
+it is nice to have side labels on the keys (front side).
+
+Open the avery_6240_grid_tiled_keycap_side_labels.svg file under
+Inkscape and follow the directions there. An attempt was made to use a
+fill color close to the color of my keys. Alter as you see fit.
+
+These align to a grid for Avery 6240 labels.
+
+See http://i.imgur.com/0Gdwp3J.jpg for a photo of the first keyboard I
+did this on. That shows the space bar not reversed.
+
+Later on, when I built my second Sentraq keyboard, I found my thumb
+hit the edge of the spacebar, so I reversed it. Find a picture of the
+second keyboard: http://i.imgur.com/i1PCgsn.jpg
 
