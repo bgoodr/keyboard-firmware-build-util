@@ -56,11 +56,14 @@ second keyboard: http://i.imgur.com/i1PCgsn.jpg
 
 Move to this directory then just run `make` like:
 
-    $ make KEYMAP=your_chosen_key_map_here build load
+    $ sleep 5; make KEYMAP=your_chosen_key_map_here build load
 
-This will install Ubuntu packages as needed, and load the firmware
-(see examples below). This currently limited to Ubuntu, but might work
-on some other Debian-based Linux variants.
+The above sleeps for 5 seconds, giving you enough time to press the
+reset button (puts the microcontroller into DFU bootloader mode, ready
+to receive the firmware from the dfu-programmer). This will install
+Ubuntu packages as needed, and load the firmware (see examples
+below). This currently limited to Ubuntu, but might work on some other
+Debian-based Linux variants.
 
 Expect to see successful output of the form:
 
