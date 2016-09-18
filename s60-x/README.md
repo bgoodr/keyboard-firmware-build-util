@@ -82,6 +82,7 @@ The following are local keymaps defined by this repository:
 * [keymap_spacefn_capslockctrlswap.c](keymap_spacefn_capslockctrlswap.c): Same as tmk_keyboard/keyboard/s60-x/keymap_spacefn.c but with capslock and control key swapped.
 * [keymap_spacefn_capslockctrlswap_mousekeys.c](keymap_spacefn_capslockctrlswap_mousekeys.c): Same as keymap_spacefn_capslockctrlswap.c but with a mouse keys layer added.
 * [keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys.c]: Same as keymap_spacefn_capslockctrlswap_mousekeys.c, but with SpaceFN layer changed to have H, J, K, L be the left, down, up, and right arrow keys which is in alignment with the mouse keys mouse left, down, up, and right, respectively. I did this because I found it difficult, in heavy usage, to keep them separate in my head when using mouse keys and SpaceFN. PgDwn and PgUp also moved to the left side under D and F, respectively, because the left hand is mostly unused when the space bar is held down when the SpaceFN layer is active. A cheatsheet Inkscape file at keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys.svg is useful to print and have at hand for training your fingers.
+* [keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys_functionkeys.c]: Same as keymap_spacefn_hjklarrow_capslockctrlswap_mousekeys.c, but with F13 through F24 mapped to a layer under the semicolon key. Linux has F25 through F35, but those are missing in tmk.
 
 ## Examples
 
