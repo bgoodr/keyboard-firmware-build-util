@@ -8,10 +8,10 @@ Description of the keyboard from MassDrop: https://www.massdrop.com/buy/sentraq-
 
 Firmware for the S60-X keyboard: https://github.com/VinnyCordeiro/tmk_keyboard/blob/master/keyboard/s60-x/README.md
 
-The instructions there state that you have to download install tooling
-to upload to the firmware. This downloads and installs required system
-packages such as dfu-programmer, and also checks out a copy of the
-firmware.
+The instructions there state that you have to download and install
+tooling to upload to the firmware. This downloads and installs
+required system packages such as dfu-programmer, and also checks out a
+copy of the firmware.
 
 You can use a different tmk firmware by changing the variables at the
 top of the Makefile.
@@ -114,6 +114,111 @@ keymap_standard.c file that is maintained in the firmware directory
 
  1. Introduction to the TMK Firmware: http://blog.roastpotatoes.co/2015/03/30/introduction-to-the-tmk-firmware/
  1. Definitions of certain macros: ACTION_LAYER_MOMENTARY, ACTION_LAYER_TOGGLE, and ACTION_LAYER_TAP_KEY: https://deskthority.net/workshop-f7/how-to-build-your-very-own-keyboard-firmware-t7177.html#p141386
+
+## Debugging
+
+The firmware is based upon TMK and at https://github.com/tmk/tmk_keyboard#magic-commands it describes a Magic + H keybinding that shows debugging help. To see that output, you can use the hid_listen program http://www.pjrc.com/teensy/hid_listen.html. The Makefile contains a hid_listen target that you can use to download and compile the hid_listen program. Example build:
+    someuser@somehost:~/bgoodr/keyboard-firmware-build-util/s60-x$ make hid_listen
+    mkdir -p hid_listen.build
+    curl http://www.pjrc.com/teensy/hid_listen_1.01.zip > hid_listen.build/hid_listen_1.01.zip
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100 73460  100 73460    0     0   110k      0 --:--:-- --:--:-- --:--:--  110k
+    cd hid_listen.build; unzip hid_listen_1.01.zip
+    Archive:  hid_listen_1.01.zip
+       creating: hid_listen/
+      inflating: hid_listen/rawhid.h     
+      inflating: hid_listen/Makefile     
+       creating: hid_listen/binaries/
+      inflating: hid_listen/binaries/hid_listen  
+      inflating: hid_listen/binaries/blinky-teensy2.hex  
+      inflating: hid_listen/binaries/blinky-teensy1.elf  
+      inflating: hid_listen/binaries/blinky-teensy1++.hex  
+      inflating: hid_listen/binaries/blinky-teensy2.elf  
+      inflating: hid_listen/binaries/blinky-teensy1++.elf  
+      inflating: hid_listen/binaries/hid_listen.exe  
+      inflating: hid_listen/binaries/hid_listen.mac  
+      inflating: hid_listen/binaries/blinky-teensy1.hex  
+      inflating: hid_listen/binaries/blinky-teensy2++.elf  
+      inflating: hid_listen/binaries/blinky-teensy2++.hex  
+      inflating: hid_listen/gpl3.txt     
+      inflating: hid_listen/rawhid.c     
+      inflating: hid_listen/hid_listen.c  
+    cd hid_listen.build/hid_listen; make
+    make[1]: Entering directory '/home/someuser/bgoodr/keyboard-firmware-build-util/s60-x/hid_listen.build/hid_listen'
+    gcc -O2 -Wall -DLINUX   -c -o hid_listen.o hid_listen.c
+    gcc -O2 -Wall -DLINUX   -c -o rawhid.o rawhid.c
+    rawhid.c:53:45: warning: assertions are a deprecated extension [-Wdeprecated]
+     #if defined(LINUX) || defined(__LINUX__) || #system(linux)
+                                                 ^
+    gcc -o hid_listen hid_listen.o rawhid.o 
+    strip hid_listen
+    make[1]: Leaving directory '/home/someuser/bgoodr/keyboard-firmware-build-util/s60-x/hid_listen.build/hid_listen'
+    ln -s hid_listen.build/hid_listen/hid_listen hid_listen
+
+That builds hid_listen and soft-links it in the current working
+directory so that you can execute it directly:
+
+    someuser@somehost:~/bgoodr/keyboard-firmware-build-util/s60-x$ ls -ld hid*
+    lrwxrwxrwx 1 someuser someuser   38 Nov 27 20:42 hid_listen -> hid_listen.build/hid_listen/hid_listen
+    drwxrwxr-x 3 someuser someuser 4096 Nov 27 20:42 hid_listen.build
+    someuser@somehost:~/bgoodr/keyboard-firmware-build-util/s60-x$ 
+
+Since the /dev/hidrawXXX devices (which hid_listen accesses) are not
+accessible unless you are superuser, execute hid_listen via sudo:
+
+    someuser@somehost:~/bgoodr/keyboard-firmware-build-util/s60-x$ sudo ./hid_listen
+    [sudo] password for someuser: 
+    Waiting for device:
+    Listening:
+
+
+On the Sentraq S60-x keyboard (unless you have changed the code), the
+Magic key is LShift + RShift, so typing Magic + h, means to type
+LShift + RShift + h which shows the help:
+
+    	- Magic -
+    d:	debug
+    x:	debug matrix
+    k:	debug keyboard
+    m:	debug mouse
+    v:	version
+    s:	status
+    c:	console mode
+    0-4:	layer0-4(F10-F4)
+    Paus:	bootloader
+    e:	eeprom
+
+Typing LShift + RShift + v gives version output:
+
+    	- Version -
+    DESC: t.m.k. keyboard firmware for Sentraq S60-X
+    VID: 0xF0DA(vnc) PID: 0x0666(S60-X) VER: 0x0001
+    BUILD: 0f2963a (13:58:16 Apr 23 2016)
+    OPTIONS: LUFA BOOTMAGIC MOUSEKEY EXTRAKEY CONSOLE COMMAND 4096
+    GCC: 4.9.2 AVR-LIBC: 1.8.0svn AVR_ARCH: avr5
+
+Then just type Control-c to exit.
+    
+
+[quote]To see help press [font=courier]Magic + H[/font].[/quote]
+
+That does not mention that the keyboard cable needs to be involved, nor does it mention the salt key as was mentioned in the https://github.com/tmk/tmk_test/blob/master/README.md#boot-magic-configuration---virtual-dip-switch section.
+
+I inferred that the Magic key is still [font=courier]LShift + RShift[/font] from [url]https://geekhack.org/index.php?topic=85992.msg2307791#msg2307791[/url], so pressing [font=courier]Magic + H[/font] means pressing [font=courier]LShift + RShift + h[/font].   So how am I to see a help message when I type that key combination? Is it sent back to the host using some other mechanism? 
+
+Is it the case that the "help" will be sent back as these so-called "debug messages" as indicated in the https://github.com/tmk/tmk_test/blob/master/README.md#debugging section?:
+
+[quote]Use PJRC's [font=courier]hid_listen[/font] to see debug messages. [/quote]
+
+Thanks,
+bg
+
+
+Move to this directory then just run `make` like:
+
+    $ sleep 5; make KEYMAP=your_chosen_key_map_here build load
+
 
 ## Printing Side labels
 

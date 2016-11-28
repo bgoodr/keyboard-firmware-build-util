@@ -61,6 +61,7 @@ clean:
 	./install_udev_rules.sh $(firmware_subdir) clean
 	./install_local_keymaps.sh $(firmware_subdir) clean
 	make -C $(firmware_subdir) KEYMAP=$(KEYMAP) clean
+	rm -rf hid_listen hid_listen.build/hid_listen/hid_listen
 
 .PHONY: dfu-programmer
 dfu-programmer:
@@ -105,4 +106,16 @@ avr-gcc: avr-libc
 avr-libc:
 	$(call install_linux_package,avr-libc,/usr/lib/avr/include/stdint.h)
 
+#
+# Download and build hid_listen:
+#
+hid_listen: hid_listen.build/hid_listen/hid_listen
+	ln -s hid_listen.build/hid_listen/hid_listen hid_listen
 
+hid_listen.build/hid_listen/hid_listen: hid_listen.build/hid_listen
+	cd hid_listen.build/hid_listen; make
+
+hid_listen.build/hid_listen:
+	mkdir -p hid_listen.build
+	curl http://www.pjrc.com/teensy/hid_listen_1.01.zip > hid_listen.build/hid_listen_1.01.zip
+	cd hid_listen.build; unzip hid_listen_1.01.zip
