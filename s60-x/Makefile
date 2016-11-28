@@ -101,7 +101,7 @@ avr-gcc: avr-libc
 #
 #    Suggests: task-c-devel, gcc-doc (>= 4:4.8), gcc (>= 4:4.8), avr-libc (>= 1:1.8.0-4)
 #
-.PHONY:
+.PHONY: avr-libc
 avr-libc:
 	$(call install_linux_package,avr-libc,/usr/lib/avr/include/stdint.h)
 
