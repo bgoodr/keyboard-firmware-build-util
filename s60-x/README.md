@@ -117,7 +117,16 @@ keymap_standard.c file that is maintained in the firmware directory
 
 ## Debugging
 
-The firmware is based upon TMK and at https://github.com/tmk/tmk_keyboard#magic-commands it describes a Magic + H keybinding that shows debugging help. To see that output, you can use the hid_listen program http://www.pjrc.com/teensy/hid_listen.html. The Makefile contains a hid_listen target that you can use to download and compile the hid_listen program. Example build:
+The firmware is based upon TMK and at
+https://github.com/tmk/tmk_keyboard#magic-commands it describes a
+Magic + H keybinding that shows debugging help. To see that output,
+you can use the hid_listen program
+http://www.pjrc.com/teensy/hid_listen.html. The Makefile contains a
+hid_listen target that you can use to download and compile the
+hid_listen program.
+
+Example:
+
     someuser@somehost:~/bgoodr/keyboard-firmware-build-util/s60-x$ make hid_listen
     mkdir -p hid_listen.build
     curl http://www.pjrc.com/teensy/hid_listen_1.01.zip > hid_listen.build/hid_listen_1.01.zip
@@ -172,7 +181,6 @@ accessible unless you are superuser, execute hid_listen via sudo:
     Waiting for device:
     Listening:
 
-
 On the Sentraq S60-x keyboard (unless you have changed the code), the
 Magic key is LShift + RShift, so typing Magic + h, means to type
 LShift + RShift + h which shows the help:
@@ -200,26 +208,6 @@ Typing LShift + RShift + v gives version output:
 
 Then just type Control-c to exit.
     
-
-[quote]To see help press [font=courier]Magic + H[/font].[/quote]
-
-That does not mention that the keyboard cable needs to be involved, nor does it mention the salt key as was mentioned in the https://github.com/tmk/tmk_test/blob/master/README.md#boot-magic-configuration---virtual-dip-switch section.
-
-I inferred that the Magic key is still [font=courier]LShift + RShift[/font] from [url]https://geekhack.org/index.php?topic=85992.msg2307791#msg2307791[/url], so pressing [font=courier]Magic + H[/font] means pressing [font=courier]LShift + RShift + h[/font].   So how am I to see a help message when I type that key combination? Is it sent back to the host using some other mechanism? 
-
-Is it the case that the "help" will be sent back as these so-called "debug messages" as indicated in the https://github.com/tmk/tmk_test/blob/master/README.md#debugging section?:
-
-[quote]Use PJRC's [font=courier]hid_listen[/font] to see debug messages. [/quote]
-
-Thanks,
-bg
-
-
-Move to this directory then just run `make` like:
-
-    $ sleep 5; make KEYMAP=your_chosen_key_map_here build load
-
-
 ## Printing Side labels
 
 For SpaceFN
