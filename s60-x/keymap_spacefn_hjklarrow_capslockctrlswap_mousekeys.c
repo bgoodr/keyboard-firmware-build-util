@@ -118,7 +118,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Fn action definition
  */
-const uint16_t PROGMEM fn_actions[] = {
+const action_t PROGMEM fn_actions[] = {
     [0] = ACTION_LAYER_TAP_KEY(1, KC_SPACE),    // Holding down FN0 switches to spacefn layer, tapping FN0 produces a "Space"
     [1] = ACTION_MODS_KEY(MOD_LSFT, KC_GRV),    // FN1 acts as if shift-grv occurred, yielding a tilde.
     [2] = ACTION_LAYER_TAP_KEY(2, KC_A),        // Holding down FN2 switches to mouse keys layer, tapping FN2 produces an "A"
