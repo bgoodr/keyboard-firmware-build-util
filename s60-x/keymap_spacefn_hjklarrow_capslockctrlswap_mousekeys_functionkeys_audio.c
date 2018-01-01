@@ -115,6 +115,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	TRNS, TRNS, TRNS,                   TRNS,                   TRNS, TRNS, TRNS, TRNS),
     /* Overlay 5: Extended function keys
 
+       F13 - F24 pretty arbitrarily defined 
+
+       VOLD, VOLU Added because F20 seems to map to mute and I wanted volume
+       down and up, respectively. I chose J and K keys for these because they
+       are already mapped to the SpaceFN overlay (see above) DOWN and UP keys,
+       respectively.
+
        Emperically found bindings on Ubuntu:
          Physical key  C symbol:   keycode  xev reports:         
          ------------  ----------  -------  -------------------- 
@@ -130,13 +137,15 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          O             F22         200      XF86TouchpadOn
          P             F23         201      XF86TouchpadOff
          [             F24         202      NoSymbol
+         J             VOLD        122      XF86AudioLowerVolume
+         K             VOLU        123      XF86AudioRaiseVolume
 
 ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
 │     │     │     │     │     │     │     │     │     │     │     │     │     │▒▒▒▒▒│     │
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
 │ F13 │ F14 │ F15 │ F16 │ F17 │ F18 │ F19 │ F20 │ F21 │ F22 │ F23 │ F24 │     │     │█████│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-│     │     |     |     |     |     |     |     |     |     |     |     │▒▒▒▒▒│     │█████│
+│     │     |     |     |     |     |     |VOLD |VOLU |     |     |     │▒▒▒▒▒│     │█████│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
 │LSFHT│▒▒▒▒▒│     │     │     │     │     │     │     │     │     │     │▒▒▒▒▒│RSHFT│▒▒▒▒▒│
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
@@ -146,7 +155,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(
   TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
    F13,  F14,  F15,  F16,  F17,  F18,  F19,  F20,  F21,  F22,  F23,  F24, TRNS, TRNS, \
-  TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,  ENT, \
+  TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, VOLD, VOLU, TRNS, TRNS, TRNS, TRNS,  ENT, \
 	TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
 	TRNS, TRNS, TRNS,                   TRNS,                   TRNS, TRNS, TRNS, TRNS),
 
