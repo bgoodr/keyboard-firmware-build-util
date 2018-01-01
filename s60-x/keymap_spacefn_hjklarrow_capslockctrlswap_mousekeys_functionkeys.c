@@ -105,7 +105,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 │     │     │     │█████│█████│█████│     │█████│█████│█████│     │ FN3 │     │     │█████│
 └─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
      * Lq: set Qwerty layout
-     * Ls: set SpaceFN layout
+     * Ld: set SpaceFN layout
      */
     KEYMAP(
   TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
@@ -114,6 +114,23 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
 	TRNS, TRNS, TRNS,                   TRNS,                   TRNS, TRNS, TRNS, TRNS),
     /* Overlay 5: Extended function keys
+
+       Emperically found bindings on Ubuntu:
+         Physical key  C symbol:   keycode  xev reports:         
+         ------------  ----------  -------  -------------------- 
+         TAB           F13         191      XF86Tools
+         Q             F14         192      XF67Launch5
+         W             F15         193      XF67Launch6
+         E             F16         194      XF67Launch7
+         R             F17         195      XF67Launch8
+         T             F18         196      XF67Launch9
+         Y             F19         197      NoSymbol
+         U             F20         198      XF86AudioMicMute
+         I             F21         199      XF86TouchpadToggle
+         O             F22         200      XF86TouchpadOn
+         P             F23         201      XF86TouchpadOff
+         [             F24         202      NoSymbol
+
 ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
 │     │     │     │     │     │     │     │     │     │     │     │     │     │▒▒▒▒▒│     │
 ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
